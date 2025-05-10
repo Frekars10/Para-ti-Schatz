@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para ti Schatz</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 100vw;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+      position: relative;
+    }
+    .texto-inicial {
+      font-size: 2.5rem;
+      color: #ff0000;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      z-index: 2;
+    }
+    .texto-inicial span {
+      margin-left: 0.5rem;
+    }
+    .mensaje {
+      font-size: 1.4rem;
+      line-height: 1.6;
+      color: #000;
+      background: rgba(255,255,255,0.8);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 80%;
+      text-align: center;
+      display: none;
+      z-index: 2;
+    }
+    .rosa {
+      position: absolute;
+      font-size: 1.5rem;
+      top: -5vh;
+      animation: caer 8s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes caer {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="texto-inicial" id="titulo">
+    Para ti Schatz <span>❤️</span>
+  </div>
+  <div class="mensaje" id="mensaje">
+    Schatz, no hay palabras suficientes para describir lo que siento por ti, cada día a tu lado es simplemente maravilloso, gracias por estar en mi vida. No me cansaré de decirlo, te amé, te amo y te amaré por siempre ❤️
+  </div>
+
+  <script>
+    const titulo = document.getElementById('titulo');
+    const mensaje = document.getElementById('mensaje');
+    function crearRosa() {
+      const rosa = document.createElement('div');
+      rosa.className = 'rosa';
+      rosa.textContent = '🌹';
+      rosa.style.left = Math.random() * 100 + 'vw';
+      rosa.style.animationDuration = (Math.random() * 4 + 6) + 's';
+      document.body.appendChild(rosa);
+      setTimeout(() => rosa.remove(), 8000);
+    }
+    titulo.addEventListener('click', () => {
+      titulo.style.display = 'none';
+      mensaje.style.display = 'block';
+      // generar rosas cada 300ms
+      setInterval(crearRosa, 300);
+    });
+  </script>
+</body>
+</html>
